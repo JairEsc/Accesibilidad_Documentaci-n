@@ -1,13 +1,12 @@
 ####Cargamos los datos a utilizar:
 #Pendiente
 #Uso de Suelo
+library(raster)
+setwd("../../../../Github/Repos/Accesibilidad_Documentación")
 
-setwd("Accesibilidad")
-
-uso_de_suelo=raster("Documentacion/Inputs/uso_de_suelo_friccion.tif")
-pendiente=raster("Documentacion/Inputs/pendiente_200.tif")
-carreteras=raster("Documentacion/Inputs/carreteras.tif")
-writeRaster(pendiente,"Documentacion/Inputs/pendiente.tif")
+uso_de_suelo=raster("Inputs/uso_de_suelo_friccion.tif")
+pendiente=raster("Inputs/pendiente.tif")
+carreteras=raster("Inputs/carreteras.tif")
 extent(carreteras)==extent(pendiente) &
   extent(uso_de_suelo)==extent(pendiente)
 #Sí me voy a tomar la libertad de actualizar los valores del raster que estén cerca de 90 grados
@@ -46,7 +45,7 @@ library(gdistance)
 Trans = transition(friction, function(x) 1 / mean(x), 8)  # Crea una matriz de transición basada en la fricción.
 T.GC = geoCorrection(Trans, type="c") 
 
-hidalgo=st_read("Documentacion/Inputs/hidalgo/LIM_MUNICIPALES.shp")
+hidalgo=st_read("Inputs/hidalgo/LIM_MUNICIPALES.shp")
 n=15
 lugares_destino_ficticios=st_sample(hidalgo$geometry,n)
 tiempo_zona = accCost(T.GC, matrix(unlist(lugares_destino_ficticios),nrow = n,ncol = 2,byrow = T))  # Calcula el costo acumulado desde un punto de inicio (coordenadas especificadas) usando la matriz de transición corregida (T.GC).

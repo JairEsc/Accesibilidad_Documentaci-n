@@ -26,7 +26,7 @@ En este ejercicio, nos concentraremos en la Accesibilidad de $lugares$\_$destino
     Los cuales, naturalmente, se obtienen de una rasterización de sus versiones vectoriales. Por ejemplo, para calcular la versión Raster de uso de suelo según vegetación se considera el coeficiente de fricción de cada tipo de vegetación
 
 ```{r friccion, include=TRUE, echo=FALSE, fig.align='center'}
-knitr::include_graphics("friccion.jpg")
+knitr::include_graphics("friccion.JPG")
 ```
 
 ## Rasters a utilizar
